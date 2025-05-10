@@ -12,8 +12,8 @@ def discretize_state(observation, bins=(10, 10, 10, 10)):
     discretized = []
     # 定义每个维度的离散化范围（根据实际环境调整）
     bounds = [
-        (-2.4, 2.4),         # cart位置
-        (-3.0, 3.0),         # cart速度
+        (-4.4, 4.4),         # cart位置
+        (-4.0, 4.0),         # cart速度
         (-0.25, 0.25),       # pole角度（约±14度）
         (-2.0, 2.0)          # pole角速度
     ]
@@ -73,7 +73,7 @@ n_episodes = 20_000
 learning_rate = 0.1
 
 # 初始化环境（训练时不渲染）
-env_train = gym.make("CartPole-v1")
+env_train = gym.make("CartPole-v1", num_envs=3, vectorization_mode="vector_entry_point")
 
 # 创建智能体
 agent = QLearningAgent(
